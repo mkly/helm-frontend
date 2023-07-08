@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+main {
+  padding-top: 32px;
+  a,
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    color: rgb(59 113 202);
+  }
+}
