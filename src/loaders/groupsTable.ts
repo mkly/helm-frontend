@@ -32,7 +32,7 @@ export async function getGroupTablesByName(
       `${
         process.env.NEXT_PUBLIC_HELM_PROXY
       }/crfm-helm-public/benchmark_output/runs/${
-        process.env.NEXT_PUBLIC_HEML_SUITE
+        process.env.NEXT_PUBLIC_HELM_SUITE
       }/groups/${encodeURIComponent(groupName)}.json`,
     );
     const data = await resp.json();
