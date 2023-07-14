@@ -29,7 +29,9 @@ export async function getGroupTablesByName(
 ): Promise<IGroupTable[]> {
   try {
     const resp = await fetch(
-      `https://storage.googleapis.com/crfm-helm-public/benchmark_output/runs/${
+      `${
+        process.env.NEXT_PUBLIC_HELM_PROXY
+      }/crfm-helm-public/benchmark_output/runs/${
         process.env.NEXT_PUBLIC_HEML_SUITE
       }/groups/${encodeURIComponent(groupName)}.json`,
     );
@@ -44,7 +46,7 @@ export async function getGroupTablesByName(
 export default async function getGroupsTable(): Promise<IGroupTable[]> {
   try {
     const resp = await fetch(
-      `https://storage.googleapis.com/crfm-helm-public/benchmark_output/runs/${process.env.NEXT_PUBLIC_HELM_SUITE}/groups.json`,
+      `${process.env.NEXT_PUBLIC_HELM_PROXY}/crfm-helm-public/benchmark_output/runs/${process.env.NEXT_PUBLIC_HELM_SUITE}/groups.json`,
     );
     const data = await resp.json();
 

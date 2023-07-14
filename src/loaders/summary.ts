@@ -11,7 +11,7 @@ export interface ISummary {
 export default async function getSummary(): Promise<ISummary> {
   try {
     const resp = await fetch(
-      `https://storage.googleapis.com/crfm-helm-public/benchmark_output/runs/${process.env.NEXT_PUBLIC_HELM_SUITE}/summary.json`,
+      `${process.env.NEXT_PUBLIC_HELM_PROXY}/crfm-helm-public/benchmark_output/runs/${process.env.NEXT_PUBLIC_HELM_SUITE}/summary.json`,
     );
     const data: IResp = await resp.json();
     /**

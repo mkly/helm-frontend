@@ -35,7 +35,7 @@ export interface IStatFiltered {
  * @TODO Copy over or create new file with all the URL functions
  */
 function statsJsonUrl(runSpecName: string): string {
-  return `https://storage.googleapis.com/crfm-helm-public/benchmark_output/runs/${process.env.NEXT_PUBLIC_HELM_SUITE}/${runSpecName}/stats.json`;
+  return `${process.env.NEXT_PUBLIC_HELM_PROXY}/crfm-helm-public/benchmark_output/runs/${process.env.NEXT_PUBLIC_HELM_SUITE}/${runSpecName}/stats.json`;
 }
 
 export default async function getStats(runSpecName: string): Promise<IStat[]> {

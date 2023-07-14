@@ -64,7 +64,7 @@ export interface IRunSpecFiltered {
 export default async function getRunSpecs(): Promise<IRunSpec[]> {
   try {
     const resp = await fetch(
-      `https://storage.googleapis.com/crfm-helm-public/benchmark_output/runs/${process.env.NEXT_PUBLIC_HELM_SUITE}/run_specs.json`,
+      `${process.env.NEXT_PUBLIC_HELM_PROXY}/crfm-helm-public/benchmark_output/runs/${process.env.NEXT_PUBLIC_HELM_SUITE}/run_specs.json`,
     );
     const data = await resp.json();
 
