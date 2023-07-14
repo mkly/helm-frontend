@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import type {
   InferGetStaticPropsType,
   GetStaticProps,
@@ -95,9 +96,9 @@ export default function RawRuns({
           {runSpecsFiltered.map((runSpec, idx) => (
             <TableRow key={idx}>
               <TableCell>
-                <a href={`/runs/${encodeURIComponent(runSpec.name)}`}>
+                <Link href={`/runs/${encodeURIComponent(runSpec.name)}`}>
                   {runSpec.name}
-                </a>
+                </Link>
               </TableCell>
               <TableCell>{runSpec.adapter_spec.method}</TableCell>
             </TableRow>

@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import fs from "fs";
 import path from "path";
@@ -16,6 +15,7 @@ import Head from "components/Head";
 import ModelsList from "components/ModelsList";
 import MetricsList from "components/MetricsList";
 import ScenariosList from "components/ScenariosList";
+import Image from "components/Image";
 
 export const getStaticProps: GetStaticProps<{
   logos: string[];

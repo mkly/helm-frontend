@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
@@ -54,9 +55,9 @@ export default function Scenarios({
               <TableRow key={idx}>
                 <TableCell>
                   <p>
-                    <a href={`/groups/${run_group.name}`}>
+                    <Link href={`/groups/${run_group.name}`}>
                       {run_group.display_name}
-                    </a>
+                    </Link>
                   </p>
                   <p>{run_group.name}</p>
                 </TableCell>

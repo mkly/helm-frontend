@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
 import { TableCell } from "@tremor/react";
@@ -23,7 +24,7 @@ const convertHrefLink = function (link: string = ""): string {
 function HrefCell({ cell }: Props) {
   return (
     <TableCell>
-      <a href={convertHrefLink(cell.href)}>{cell.value}</a>
+      <Link href={convertHrefLink(cell.href)}>{cell.value}</Link>
     </TableCell>
   );
 }

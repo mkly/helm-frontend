@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  basePath: "/helm-frontend",
 };
 
 module.exports = nextConfig;

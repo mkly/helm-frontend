@@ -52,12 +52,12 @@ export default function Pagination({ pageNumber, totalPages }: Props) {
           </Link>
         </li>
         <li>
-          <a
+          <Link
             className="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
             href={`/runs/page/${pagesToShow[2]}`}
           >
             {pagesToShow[2]}
-          </a>
+          </Link>
         </li>
         <li>
           <Link
