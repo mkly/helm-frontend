@@ -1,3 +1,5 @@
+[![Build and Deploy](https://github.com/mkly/helm-frontend/actions/workflows/main.yml/badge.svg)](https://github.com/mkly/helm-frontend/actions/workflows/main.yml)
+
 ## Getting Started
 
 First, run the development server:
