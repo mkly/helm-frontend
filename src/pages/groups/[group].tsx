@@ -104,33 +104,35 @@ export default function Group({
           ) : null}
         </Col>
       </Grid>
-      <TabGroup>
-        <TabList>
-          <GroupHeader groupTables={groupTables} />
-          <div className="flex !ml-auto">
-            <Button
-              variant="light"
-              size="xs"
-              onClick={() => setShowBarChart(!showBarChart)}
-            >
-              {showBarChart ? "Show Table" : "Show Bar Chart"}
-            </Button>
-          </div>
-        </TabList>
-        <TabPanels>
-          {groupTables.map((groupTable, idx) => {
-            return (
-              <TabPanel key={idx}>
-                {showBarChart ? (
-                  <GroupBarChart groupTable={groupTable} />
-                ) : (
-                  <GroupTable groupTable={groupTable} />
-                )}
-              </TabPanel>
-            );
-          })}
-        </TabPanels>
-      </TabGroup>
+      {groupTables.length > 0 ? (
+        <TabGroup>
+          <TabList>
+            <GroupHeader groupTables={groupTables} />
+            <div className="flex !ml-auto">
+              <Button
+                variant="light"
+                size="xs"
+                onClick={() => setShowBarChart(!showBarChart)}
+              >
+                {showBarChart ? "Show Table" : "Show Bar Chart"}
+              </Button>
+            </div>
+          </TabList>
+          <TabPanels>
+            {groupTables.map((groupTable, idx) => {
+              return (
+                <TabPanel key={idx}>
+                  {showBarChart ? (
+                    <GroupBarChart groupTable={groupTable} />
+                  ) : (
+                    <GroupTable groupTable={groupTable} />
+                  )}
+                </TabPanel>
+              );
+            })}
+          </TabPanels>
+        </TabGroup>
+      ) : null}
     </Layout>
   );
 }
