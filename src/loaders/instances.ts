@@ -30,7 +30,7 @@ export default async function getInstances(
 ): Promise<IInstance[]> {
   try {
     const resp = await fetch(
-      `https://storage.googleapis.com/crfm-helm-public/benchmark_output/runs/${process.env.NEXT_PUBLIC_HEML_SUITE}/${runSpecName}/instances.json`,
+      `https://storage.googleapis.com/crfm-helm-public/benchmark_output/runs/${process.env.NEXT_PUBLIC_HELM_SUITE}/${runSpecName}/instances.json`,
     );
     const data: IInstance[] = await resp.json();
 

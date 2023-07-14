@@ -30,7 +30,7 @@ export default async function getDisplayRequests(
 ): Promise<IDisplayRequest[]> {
   try {
     const resp = await fetch(
-      `https://storage.googleapis.com/crfm-helm-public/benchmark_output/runs/${process.env.NEXT_PUBLIC_HEML_SUITE}/${runSpecName}/display_requests.json`,
+      `https://storage.googleapis.com/crfm-helm-public/benchmark_output/runs/${process.env.NEXT_PUBLIC_HELM_SUITE}/${runSpecName}/display_requests.json`,
     );
     const data: IDisplayRequest[] = await resp.json();
 
