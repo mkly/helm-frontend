@@ -8,7 +8,7 @@ type Props = {
 export default function Head({ title }: Props) {
   return (
     <NextHead>
-      <title>HELM - {title}</title>
+      <title>{`HELM - ${title}`}</title>
     </NextHead>
   );
 }
