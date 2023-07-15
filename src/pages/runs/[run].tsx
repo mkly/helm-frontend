@@ -154,27 +154,17 @@ export default function Run({
         </TabList>
         <TabPanels>
           <TabPanel>
-            <Virtuoso
-              style={{ height: "1000px" }}
-              totalCount={state.instancesFiltered.length}
-              itemContent={(idx) => (
-                <>
-                  <InstanceRow
-                    key={idx}
-                    instance={state.instancesFiltered[idx]}
-                    predictions={
-                      state.displayPredictionMap[
-                        state.instancesFiltered[idx].id
-                      ]
-                    }
-                    requests={
-                      state.displayRequestMap[state.instancesFiltered[idx].id]
-                    }
-                  />
-                  <Divider />
-                </>
-              )}
-            />
+            {state.instancesFiltered.map((instance, idx) => (
+              <>
+                <InstanceRow
+                  key={idx}
+                  instance={instance}
+                  predictions={state.displayPredictionMap[instance.id]}
+                  requests={state.displayRequestMap[instance.id]}
+                />
+                <Divider />
+              </>
+            ))}
           </TabPanel>
           <TabPanel>
             <Table>
