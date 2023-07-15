@@ -10,7 +10,6 @@ import {
   TabPanel,
   Divider,
 } from "@tremor/react";
-import { Virtuoso } from "react-virtuoso";
 import { ClipLoader } from "react-spinners";
 import type {
   GetStaticPaths,
