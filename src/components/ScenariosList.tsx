@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
-import { Title } from "@tremor/react";
+import { Icon, Title } from "@tremor/react";
+import { InformationCircleIcon } from "@heroicons/react/outline";
 
 import {
   getRunGroupTaskBucketsFromRunGroups,
@@ -35,7 +36,13 @@ export default function ScenariosList({ runGroups }: Props) {
                 .join(" ")}
             </Title>
             {scenarioBuckets[bucket].map((scenario, idx) => (
-              <li className="ml-4" key={idx}>
+              <li key={idx}>
+                <Icon
+                  color="zinc"
+                  size="sm"
+                  icon={InformationCircleIcon}
+                  tooltip={scenario.description}
+                />{" "}
                 <Link href={`/groups/${scenario.name}`}>
                   {scenario.display_name}
                 </Link>

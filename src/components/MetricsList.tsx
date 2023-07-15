@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Title } from "@tremor/react";
+import { InformationCircleIcon } from "@heroicons/react/outline";
+import { Icon, Title } from "@tremor/react";
 
 import { IMetric, IMetricGroup } from "loaders/schema";
 
@@ -19,22 +20,30 @@ export default function MetricList({ metrics, metricGroups }: Props) {
         <li key={idx}>
           <ul>
             {metrics.filter((metric) =>
-              metricGroup.metrics.some((m) => m.name === metric.name),
-            ).length > 0 ? (
-              <Title>
-                {metricGroup.display_name} ({metricGroup.name})
-              </Title>
-            ) : null}
+                metricGroup.metrics.some((m) => m.name === metric.name)
+              ).length > 0
+              ? (
+                <Title>
+                  {metricGroup.display_name} ({metricGroup.name})
+                </Title>
+              )
+              : null}
             {metrics
               .filter((metric) =>
-                metricGroup.metrics.some((m) => m.name === metric.name),
+                metricGroup.metrics.some((m) => m.name === metric.name)
               )
               .map((metric, idx) => {
                 remainingMetrics = remainingMetrics.filter(
                   (rm) => rm.name !== metric.name,
                 );
                 return (
-                  <li key={idx} className="ml-4">
+                  <li key={idx}>
+                    <Icon
+                      color="zinc"
+                      size="sm"
+                      icon={InformationCircleIcon}
+                      tooltip={metric.description}
+                    />{" "}
                     {metric.display_name}
                   </li>
                 );
