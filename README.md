@@ -19,3 +19,4 @@ Open [http://localhost:3000/helm-frontend](http://localhost:3000/helm-frontend) 
 ```bash
 NEXT_PUBLIC_HELM_SUITE=v0.2.3 # Change to the current or desired suite
 NEXT_PUBLIC_HELM_PROXY=https://example.com # Change to either the proxy or the direct API
+```
