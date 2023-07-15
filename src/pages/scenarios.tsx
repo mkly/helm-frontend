@@ -2,15 +2,15 @@ import React from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
-import type { InferGetStaticPropsType, GetStaticProps } from "next";
+import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import {
-  Title,
   Table,
+  TableBody,
+  TableCell,
   TableHead,
   TableHeaderCell,
-  TableBody,
   TableRow,
-  TableCell,
+  Title,
 } from "@tremor/react";
 
 import type { IRunGroup } from "loaders/schema";
@@ -24,7 +24,11 @@ export const getStaticProps: GetStaticProps<{
 }> = async () => {
   const { run_groups: runGroups } = await getSchema();
 
-  return { props: { runGroups } };
+  return {
+    props: {
+      runGroups: runGroups.filter((runGroup) => !runGroup.todo),
+    },
+  };
 };
 
 export default function Scenarios({
@@ -61,29 +65,31 @@ export default function Scenarios({
                   </p>
                   <p>{run_group.name}</p>
                 </TableCell>
-                {run_group.taxonomy !== undefined ? (
-                  <>
-                    <TableCell>{run_group.taxonomy.task}</TableCell>
-                    <TableCell>{run_group.taxonomy.what}</TableCell>
-                    <TableCell>{run_group.taxonomy.who}</TableCell>
-                    <TableCell>{run_group.taxonomy.when}</TableCell>
-                    <TableCell>{run_group.taxonomy.language}</TableCell>
-                    <TableCell>
-                      <ReactMarkdown>{run_group.description}</ReactMarkdown>
-                    </TableCell>
-                  </>
-                ) : (
-                  <>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>
-                      <ReactMarkdown>{run_group.description}</ReactMarkdown>
-                    </TableCell>
-                  </>
-                )}
+                {run_group.taxonomy !== undefined
+                  ? (
+                    <>
+                      <TableCell>{run_group.taxonomy.task}</TableCell>
+                      <TableCell>{run_group.taxonomy.what}</TableCell>
+                      <TableCell>{run_group.taxonomy.who}</TableCell>
+                      <TableCell>{run_group.taxonomy.when}</TableCell>
+                      <TableCell>{run_group.taxonomy.language}</TableCell>
+                      <TableCell>
+                        <ReactMarkdown>{run_group.description}</ReactMarkdown>
+                      </TableCell>
+                    </>
+                  )
+                  : (
+                    <>
+                      <TableCell></TableCell>
+                      <TableCell></TableCell>
+                      <TableCell></TableCell>
+                      <TableCell></TableCell>
+                      <TableCell></TableCell>
+                      <TableCell>
+                        <ReactMarkdown>{run_group.description}</ReactMarkdown>
+                      </TableCell>
+                    </>
+                  )}
               </TableRow>
             );
           })}

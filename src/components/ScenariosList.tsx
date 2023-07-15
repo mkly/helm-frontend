@@ -15,7 +15,8 @@ interface Props {
 }
 
 export default function ScenariosList({ runGroups }: Props) {
-  const scenarioBuckets = getRunGroupTaskBucketsFromRunGroups(runGroups);
+  const runGroupsActive = runGroups.filter((runGroup) => !runGroup.todo);
+  const scenarioBuckets = getRunGroupTaskBucketsFromRunGroups(runGroupsActive);
 
   return (
     <ul>
