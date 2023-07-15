@@ -1,29 +1,8 @@
 import React from "react";
 
-const colors = [
-  "blue",
-  "cyan",
-  "sky",
-  "indigo",
-  "violet",
-  "purple",
-  "fuchsia",
-  "slate",
-  "gray",
-  "zinc",
-  "neutral",
-  "stone",
-  "red",
-  "orange",
-  "amber",
-  "yellow",
-  "lime",
-  "green",
-  "emerald",
-  "teal",
-  "pink",
-  "rose",
-];
+import getColorList from "utils/getColorList";
+
+const colors = getColorList();
 
 interface Props {
   categories: string[];
@@ -40,8 +19,10 @@ export default function Legend({
     <ol>
       {categories.map((category, idx) => (
         <li
-          className={`cursor-pointer flex-none inline-flex items-center truncate text-tremor-content dark:text-dark-tremor-content mr-4${
-            activeCategories.has(category) ? " bg-slate-200" : ""
+          className={`transition-colors duration-200 cursor-pointer py-[1px] px-[6px] rounded-full flex-none inline-flex items-center truncate text-tremor-content dark:text-dark-tremor-content mr-4${
+            activeCategories.has(category)
+              ? " bg-slate-200 border-none border-solid border border-slate-200"
+              : " border-dashed border border-slate-300"
           }`}
           onClick={() => onClick(category, idx)}
           key={idx}
@@ -53,7 +34,7 @@ export default function Legend({
           >
             <circle cx={4} cy={4} r={4} />
           </svg>
-          <p className="whitespace-nowrap ml-2 truncate text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+          <p className="whitespace-nowrap ml-2 text-xs truncate text-tremor-default text-tremor-content dark:text-dark-tremor-content">
             {category}
           </p>
         </li>
