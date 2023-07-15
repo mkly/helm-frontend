@@ -1,10 +1,10 @@
 import React from "react";
 import { List, ListItem, Title, Subtitle, Text, Bold } from "@tremor/react";
 
-import type { IReference } from "loaders/instances";
+import type { IReferenceFiltered } from "loaders/instances";
 
 type ReferencesProps = {
-  references: IReference[];
+  references: IReferenceFiltered[];
 };
 
 export default function References({ references }: ReferencesProps) {

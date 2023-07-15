@@ -15,7 +15,7 @@ export default function Request({ request }: Props) {
       <List>
         <ListItem key={0} className="block">
           <Title className="block">Prompt</Title>
-          <div className="bloack overflow-y-scroll w-full max-h-72">
+          <div className="block overflow-y-scroll w-full max-h-72">
             <pre>{request.request.prompt}</pre>
           </div>
         </ListItem>
