@@ -88,7 +88,7 @@ export default function Predictions({ predictions, requests }: Props) {
           {openDetails ? "Hide Details" : "Show Details"}
         </Button>
       </Title>
-      <Flex className="flex-wrap justify-start">
+      <Flex className="flex-wrap justify-start items-start">
         {predictions.map((prediction, idx) => (
           <>
             <List key={idx} className="max-w-xs">
