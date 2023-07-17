@@ -9,10 +9,9 @@ export default function Nav() {
       <div
         className="
                   container
-                  px-6
                   py-3
                   mx-auto
-                  md:flex md:justify-between md:items-center
+                  flex justify-between items-center
                   "
       >
         <div className="flex items-center">
@@ -23,7 +22,7 @@ export default function Nav() {
                       font-bold
                       text-gray-800
                       dark:text-white
-                      md:text-2xl
+                      text-2xl
                       hover:text-gray-700
                       dark:hover:text-gray-300
                       "
@@ -42,7 +41,7 @@ export default function Nav() {
                       font-bold
                       text-gray-800
                       dark:text-white
-                      md:text-2xl
+                      text-2xl
                       hover:text-gray-700
                       dark:hover:text-gray-300
                       ml-6
@@ -59,16 +58,16 @@ export default function Nav() {
           </div>
         </div>
 
-        <div className="items-center md:flex">
-          <div className="flex flex-col md:flex-row md:mx-6">
+        <div className="items-center flex">
+          <div className="flex flex-row ml-6 justify-end">
             <Link
               className="
                       my-1
                       text-gray-700
                       dark:text-gray-200
-                      hover:text-indigo-500
-                      dark:hover:text-indigo-400
-                      md:mx-4 md:my-0
+                      hover:text-blue-500
+                      dark:hover:text-blue-400
+                      ml-4 my-0
                       "
               href="/models"
             >
@@ -79,9 +78,9 @@ export default function Nav() {
                       my-1
                       text-gray-700
                       dark:text-gray-200
-                      hover:text-indigo-500
-                      dark:hover:text-indigo-400
-                      md:mx-4 md:my-0
+                      hover:text-blue-500
+                      dark:hover:text-blue-400
+                      ml-8 my-0
                       "
               href="/scenarios"
             >
@@ -92,9 +91,9 @@ export default function Nav() {
                       my-1
                       text-gray-700
                       dark:text-gray-200
-                      hover:text-indigo-500
-                      dark:hover:text-indigo-400
-                      md:mx-4 md:my-0
+                      hover:text-blue-500
+                      dark:hover:text-blue-400
+                      ml-8 my-0
                       "
               href="/groups"
             >
@@ -105,9 +104,9 @@ export default function Nav() {
                       my-1
                       text-gray-700
                       dark:text-gray-200
-                      hover:text-indigo-500
-                      dark:hover:text-indigo-400
-                      md:mx-4 md:my-0
+                      hover:text-blue-500
+                      dark:hover:text-blue-400
+                      ml-8 my-0
                       "
               href="/runs/page/1"
             >
