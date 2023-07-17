@@ -80,7 +80,7 @@ export default function GroupBarChart({ groupTable }: Props) {
     Math.max(activeCategories.size || 1, 2) *
       (groupTable.rows.length || 1) *
       20,
-    4000,
+    5000,
   );
 
   return (

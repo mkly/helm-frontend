@@ -55,7 +55,7 @@ export default function Models({
                   <ModelLogo modelOrganization={model.creator_organization} />
                 </TableCell>
                 <TableCell>
-                  <p className="text-lg">{model.display_name}</p>
+                  <p className="text-lg uppercase">{model.display_name}</p>
                   <p>{model.name}</p>
                 </TableCell>
                 <TableCell className="whitespace-normal">
