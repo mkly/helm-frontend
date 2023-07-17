@@ -76,10 +76,12 @@ export default function GroupBarChart({ groupTable }: Props) {
     setActiveCategories(new Map(activeCategories));
   };
 
-  const height =
+  const height = Math.min(
     Math.max(activeCategories.size || 1, 2) *
-    (groupTable.rows.length || 1) *
-    20;
+      (groupTable.rows.length || 1) *
+      20,
+    4000,
+  );
 
   return (
     <div style={{ height }} className={`w-full`}>
