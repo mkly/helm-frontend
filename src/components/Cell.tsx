@@ -9,6 +9,7 @@ import formatResult from "utils/formatResult";
 
 interface Props {
   cell: IRow;
+  className?: any;
 }
 
 const convertHrefLink = function (link: string = ""): string {
@@ -21,17 +22,17 @@ const convertHrefLink = function (link: string = ""): string {
   return `/groups/${match[1]}`;
 };
 
-function HrefCell({ cell }: Props) {
+function HrefCell({ cell, ...props }: Props) {
   return (
-    <TableCell>
+    <TableCell {...props}>
       <Link href={convertHrefLink(cell.href)}>{cell.value}</Link>
     </TableCell>
   );
 }
 
-function DescriptionCell({ cell }: Props) {
+function DescriptionCell({ cell, ...props }: Props) {
   return (
-    <TableCell>
+    <TableCell {...props}>
       <ReactMarkdown>
         {cell.description === undefined ? "" : cell.description}
       </ReactMarkdown>
@@ -39,21 +40,21 @@ function DescriptionCell({ cell }: Props) {
   );
 }
 
-function ValueCell({ cell }: Props) {
-  return <TableCell>{formatResult(cell.value)}</TableCell>;
+function ValueCell({ cell, ...props }: Props) {
+  return <TableCell {...props}>{formatResult(cell.value)}</TableCell>;
 }
 
-export default function Cell({ cell }: Props) {
+export default function Cell({ cell, ...props }: Props) {
   if (cell.href !== undefined) {
-    return <HrefCell cell={cell} />;
+    return <HrefCell cell={cell} {...props} />;
   }
 
   if (cell.value !== undefined) {
-    return <ValueCell cell={cell} />;
+    return <ValueCell cell={cell} {...props} />;
   }
 
   if (cell.description !== undefined) {
-    return <DescriptionCell cell={cell} />;
+    return <DescriptionCell cell={cell} {...props} />;
   }
 
   return <TableCell></TableCell>;

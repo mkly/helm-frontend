@@ -24,6 +24,10 @@ export interface IGroupTable {
   rows: IRow[][];
 }
 
+export function getGroupsTableJsonUrl(): string {
+  return `${process.env.NEXT_PUBLIC_HELM_PROXY}/crfm-helm-public/benchmark_output/runs/${process.env.NEXT_PUBLIC_HELM_SUITE}/groups.json`;
+}
+
 export async function getGroupTablesByName(
   groupName: string,
 ): Promise<IGroupTable[]> {
@@ -45,9 +49,7 @@ export async function getGroupTablesByName(
 
 export default async function getGroupsTable(): Promise<IGroupTable[]> {
   try {
-    const resp = await fetch(
-      `${process.env.NEXT_PUBLIC_HELM_PROXY}/crfm-helm-public/benchmark_output/runs/${process.env.NEXT_PUBLIC_HELM_SUITE}/groups.json`,
-    );
+    const resp = await fetch(getGroupsTableJsonUrl());
     const data = await resp.json();
 
     return data;
