@@ -8,7 +8,7 @@ type Props = {
 export default function Head({ title }: Props) {
   return (
     <NextHead>
-      <title>{`HELM - ${title}`}</title>
+      <title>{`Holistic Evaluation of Language Models (HELM) - ${title}`}</title>
     </NextHead>
   );
 }
