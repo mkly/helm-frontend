@@ -5,7 +5,7 @@ interface IResp {
 
 export interface ISummary {
   suite: string | null;
-  date: Date | null;
+  date: string | null;
 }
 
 export default async function getSummary(): Promise<ISummary> {
@@ -21,7 +21,7 @@ export default async function getSummary(): Promise<ISummary> {
      */
     const summary: ISummary = {
       suite: data.suite,
-      date: new Date(`${data.date}T12:00:00-08:00`),
+      date: new Date(`${data.date}T12:00:00-08:00`).toLocaleDateString("en-US"),
     };
 
     return summary;

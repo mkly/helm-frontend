@@ -5,10 +5,12 @@ import path from "path";
 
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
 import type { ISchema } from "loaders/schema";
+import type { ISummary } from "loaders/summary";
 
 import { Flex, Button, Text, Bold } from "@tremor/react";
 
 import getSchema from "loaders/schema";
+import getSummary from "loaders/summary";
 
 import Layout from "components/Layout";
 import Head from "components/Head";
@@ -20,15 +22,18 @@ import Image from "components/Image";
 export const getStaticProps: GetStaticProps<{
   logos: string[];
   schema: ISchema;
+  summary: ISummary;
 }> = async () => {
   const dirPath = path.join(process.cwd(), "public", "logos");
   const logos = fs.readdirSync(dirPath).map((f) => path.join("logos", f));
   const schema = await getSchema();
+  const summary = await getSummary();
 
   return {
     props: {
       logos,
       schema,
+      summary,
     },
   };
 };
@@ -36,9 +41,10 @@ export const getStaticProps: GetStaticProps<{
 export default function Home({
   logos,
   schema,
+  summary,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <Layout>
+    <Layout summary={summary}>
       <Head title="Home" />
       <Image
         src="/helm-logo.png"

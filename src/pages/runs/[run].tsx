@@ -23,10 +23,12 @@ import type { IRunSpec } from "loaders/runSpecs";
 import type { IInstanceFiltered } from "loaders/instances";
 import type { IDisplayPredictionMap } from "loaders/displayPredictions";
 import type { IDisplayRequestMap } from "loaders/displayRequests";
+import type { ISummary } from "loaders/summary";
 import getSchema from "loaders/schema";
 import getRunSpecs from "loaders/runSpecs";
 import getStats, { filterStats } from "loaders/stats";
 import getInstances, { filterInstances } from "loaders/instances";
+import getSummary from "loaders/summary";
 import { getDisplayPredictionMap } from "loaders/displayPredictions";
 import { getDisplayRequestMap } from "loaders/displayRequests";
 
@@ -50,7 +52,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = ({ params }) => {
+export const getStaticProps: GetStaticProps<{
+  runName: string;
+  summary: ISummary;
+}> = async ({ params }) => {
   const runName = (() => {
     if (params?.run === undefined) {
       return "";
@@ -62,9 +67,12 @@ export const getStaticProps: GetStaticProps = ({ params }) => {
     return params.run;
   })();
 
+  const summary = await getSummary();
+
   return {
     props: {
       runName,
+      summary,
     },
   };
 };
@@ -77,6 +85,7 @@ export const getStaticProps: GetStaticProps = ({ params }) => {
  */
 export default function Run({
   runName,
+  summary,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [state, setState] = useState<
     | {
@@ -127,7 +136,7 @@ export default function Run({
   }
 
   return (
-    <Layout>
+    <Layout summary={summary}>
       <Head title={`Run: ${state.runName}`} />
       <Grid className="mb-16" numItems={2}>
         <Col numColSpan={1}>

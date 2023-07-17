@@ -12,8 +12,10 @@ import { Grid, Col, Card, Title, Subtitle, Button } from "@tremor/react";
 
 import type { IRunGroup } from "loaders/schema";
 import type { IGroupTable } from "loaders/groupsTable";
+import type { ISummary } from "loaders/summary";
 import getSchema from "loaders/schema";
 import { getGroupTablesByName } from "loaders/groupsTable";
+import getSummary from "loaders/summary";
 
 import Layout from "components/Layout";
 import Head from "components/Head";
@@ -24,6 +26,7 @@ import GroupHeader from "components/GroupHeader";
 export const getStaticProps: GetStaticProps<{
   groupTables: IGroupTable[];
   group: IRunGroup;
+  summary: ISummary;
 }> = async ({ params }) => {
   const groupName = params?.group !== undefined ? params.group : "";
   const schema = await getSchema();
@@ -34,10 +37,12 @@ export const getStaticProps: GetStaticProps<{
     group !== undefined
       ? await getGroupTablesByName(group.name)
       : ([] as IGroupTable[]);
+  const summary = await getSummary();
 
   return {
     props: {
       groupTables,
+      summary,
       group:
         group !== undefined
           ? group
@@ -67,11 +72,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export default function Group({
   groupTables,
   group,
+  summary,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [showBarChart, setShowBarChart] = useState(true);
 
   return (
-    <Layout>
+    <Layout summary={summary}>
       <Head title={`Group: ${group.display_name}`} />
       <Grid className="mb-16" numItems={2}>
         <Col numColSpan={1}>

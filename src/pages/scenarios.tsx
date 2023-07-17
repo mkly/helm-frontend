@@ -13,18 +13,23 @@ import {
 } from "@tremor/react";
 
 import type { IRunGroup } from "loaders/schema";
+import type { ISummary } from "loaders/summary";
 
 import Layout from "components/Layout";
 import Head from "components/Head";
 import getSchema from "loaders/schema";
+import getSummary from "loaders/summary";
 
 export const getStaticProps: GetStaticProps<{
   runGroups: IRunGroup[];
+  summary: ISummary;
 }> = async () => {
   const { run_groups: runGroups } = await getSchema();
+  const summary = await getSummary();
 
   return {
     props: {
+      summary,
       runGroups: runGroups.filter((runGroup) => !runGroup.todo),
     },
   };
@@ -32,9 +37,10 @@ export const getStaticProps: GetStaticProps<{
 
 export default function Scenarios({
   runGroups,
+  summary,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <Layout>
+    <Layout summary={summary}>
       <Head title="Scenarios" />
       <Title>Scenarios</Title>
       <div className="w-full">

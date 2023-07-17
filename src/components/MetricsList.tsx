@@ -20,17 +20,15 @@ export default function MetricList({ metrics, metricGroups }: Props) {
         <li key={idx}>
           <ul>
             {metrics.filter((metric) =>
-                metricGroup.metrics.some((m) => m.name === metric.name)
-              ).length > 0
-              ? (
-                <Title>
-                  {metricGroup.display_name} ({metricGroup.name})
-                </Title>
-              )
-              : null}
+              metricGroup.metrics.some((m) => m.name === metric.name),
+            ).length > 0 ? (
+              <Title>
+                {metricGroup.display_name} ({metricGroup.name})
+              </Title>
+            ) : null}
             {metrics
               .filter((metric) =>
-                metricGroup.metrics.some((m) => m.name === metric.name)
+                metricGroup.metrics.some((m) => m.name === metric.name),
               )
               .map((metric, idx) => {
                 remainingMetrics = remainingMetrics.filter(

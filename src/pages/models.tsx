@@ -15,22 +15,27 @@ import {
 import Head from "components/Head";
 import getSchema from "loaders/schema";
 import type { ISchema } from "loaders/schema";
+import getSummary from "loaders/summary";
+import type { ISummary } from "loaders/summary";
 import Layout from "components/Layout";
 import ModelLogo from "components/ModelLogo";
 
 export const getStaticProps: GetStaticProps<{
   schema: ISchema;
+  summary: ISummary;
 }> = async () => {
   const schema = await getSchema();
+  const summary = await getSummary();
 
-  return { props: { schema } };
+  return { props: { schema, summary } };
 };
 
 export default function Models({
   schema,
+  summary,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <Layout>
+    <Layout summary={summary}>
       <Head title="Models" />
       <Title>Models</Title>
       <div className="w-full">

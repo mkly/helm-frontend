@@ -17,7 +17,9 @@ import {
 } from "@tremor/react";
 
 import type { IRunSpecFiltered } from "loaders/runSpecs";
+import type { ISummary } from "loaders/summary";
 import getRunSpecs, { filterRunSpecs } from "loaders/runSpecs";
+import getSummary from "loaders/summary";
 
 import Layout from "components/Layout";
 import Head from "components/Head";
@@ -29,6 +31,7 @@ export const getStaticProps: GetStaticProps<{
   runSpecsFiltered: IRunSpecFiltered[];
   pageNumber: string;
   totalPages: number;
+  summary: ISummary;
 }> = async ({ params }) => {
   const pageNumber =
     params?.pageNumber !== undefined
@@ -46,11 +49,14 @@ export const getStaticProps: GetStaticProps<{
     (Number(pageNumber) - 1) * RESULTS_PER_PAGE + RESULTS_PER_PAGE,
   ];
 
+  const summary = await getSummary();
+
   return {
     props: {
       runSpecsFiltered: filterRunSpecs(runSpecs.slice(...pageSlice)),
       totalPages,
       pageNumber,
+      summary,
     },
   };
 };
@@ -79,9 +85,10 @@ export default function RawRuns({
   runSpecsFiltered,
   pageNumber,
   totalPages,
+  summary,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <Layout>
+    <Layout summary={summary}>
       <Head title="Runs" />
       <Title>Runs</Title>
 
@@ -109,11 +116,6 @@ export default function RawRuns({
         pageNumber={Number(pageNumber)}
         totalPages={Number(totalPages)}
       />
-      <div>
-        {runSpecsFiltered.length} result
-        {`${runSpecsFiltered.length === 1 ? "" : "s"}`}
-      </div>
-      <div>{totalPages} pages</div>
     </Layout>
   );
 }

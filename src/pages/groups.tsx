@@ -20,22 +20,27 @@ import { CloudDownloadIcon } from "@heroicons/react/outline";
 import Layout from "components/Layout";
 import Head from "components/Head";
 import getGroupsTable, { getGroupsTableJsonUrl } from "loaders/groupsTable";
+import getSummary from "loaders/summary";
 import type { IGroupTable } from "loaders/groupsTable";
+import type { ISummary } from "loaders/summary";
 import Cell from "components/Cell";
 
 export const getStaticProps: GetStaticProps<{
   groupsTable: IGroupTable[];
+  summary: ISummary;
 }> = async () => {
   const groupsTable = await getGroupsTable();
+  const summary = await getSummary();
 
-  return { props: { groupsTable } };
+  return { props: { groupsTable, summary } };
 };
 
 export default function Results({
   groupsTable,
+  summary,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <Layout>
+    <Layout summary={summary}>
       <Head title="Results" />
       <Flex>
         <Title>Groups</Title>

@@ -6,23 +6,30 @@ interface Props {
   totalPages: number;
 }
 
+const size = 5;
+
 export default function Pagination({ pageNumber, totalPages }: Props) {
-  let pagesToShow;
-  if (pageNumber === 1) {
-    pagesToShow = [pageNumber, 2, 3];
-  } else if (pageNumber === totalPages) {
-    pagesToShow = [pageNumber - 2, pageNumber - 1, pageNumber];
+  let pagesToShow: number[];
+
+  if (pageNumber < Math.ceil(size / 2)) {
+    pagesToShow = Array.from(Array(size).keys()).map((x) => x + 1);
+  } else if (pageNumber > totalPages - Math.floor(size / 2)) {
+    pagesToShow = Array.from(Array(size).keys()).map(
+      (x) => totalPages - size + x + 1,
+    );
   } else {
-    pagesToShow = [pageNumber - 1, pageNumber, pageNumber + 1];
+    pagesToShow = Array.from(Array(size).keys()).map(
+      (x) => pageNumber - Math.floor(size / 2) + x,
+    );
   }
 
   const disabledPrevNext =
-    "pointer-events-none relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-500 transition-all duration-300 dark:text-neutral-400";
+    "pointer-events-none relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-500 transition-all duration-300 dark:text-neutral-400 opacity-50";
   const abledPrevNext =
     "relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white";
 
   return (
-    <nav aria-label="Page navigation example">
+    <nav aria-label="page navigation" className="mt-10 flex justify-center">
       <ul className="list-style-none flex">
         <li>
           <Link
@@ -32,33 +39,30 @@ export default function Pagination({ pageNumber, totalPages }: Props) {
             Previous
           </Link>
         </li>
-        <li>
-          <Link
-            className="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100  dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-            href={`/runs/page/${pagesToShow[0]}`}
-          >
-            {pagesToShow[0]}
-          </Link>
-        </li>
-        <li aria-current="page">
-          <Link
-            className="relative block rounded bg-primary-100 px-3 py-1.5 text-sm font-medium text-primary-700 transition-all duration-300"
-            href={`/runs/page/${pagesToShow[1]}`}
-          >
-            {pagesToShow[1]}
-            <span className="absolute -m-px h-px w-px overflow-hidden whitespace-nowrap border-0 p-0 [clip:rect(0,0,0,0)]">
-              (current)
-            </span>
-          </Link>
-        </li>
-        <li>
-          <Link
-            className="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-            href={`/runs/page/${pagesToShow[2]}`}
-          >
-            {pagesToShow[2]}
-          </Link>
-        </li>
+        {pagesToShow.map((page, idx) => {
+          if (pageNumber === page) {
+            return (
+              <li key={idx} aria-current="page">
+                <Link
+                  className="relative block rounded bg-primary-100 px-3 py-1.5 text-sm font-bold text-primary-700 transition-all duration-300 pointer-events-none"
+                  href={`/runs/page/${pagesToShow[idx]}`}
+                >
+                  {pagesToShow[idx]}
+                </Link>
+              </li>
+            );
+          }
+          return (
+            <li key={idx}>
+              <Link
+                className="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                href={`/runs/page/${pagesToShow[idx]}`}
+              >
+                {pagesToShow[idx]}
+              </Link>
+            </li>
+          );
+        })}
         <li>
           <Link
             className={
