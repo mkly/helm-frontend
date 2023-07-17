@@ -76,8 +76,14 @@ export default function GroupBarChart({ groupTable }: Props) {
     setActiveCategories(new Map(activeCategories));
   };
 
+  const height =
+    Math.max(activeCategories.size || 1, 2) *
+    (groupTable.rows.length || 1) *
+    20;
+
+  console.log(height);
   return (
-    <div className="w-full h-[2000px]">
+    <div style={{ height }} className={`w-full`}>
       <Legend
         categories={groupTable.header.slice(1).map(({ value }) => value)}
         activeCategories={activeCategories}
