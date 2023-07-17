@@ -16,7 +16,6 @@ import Head from "components/Head";
 import getSchema from "loaders/schema";
 import type { ISchema } from "loaders/schema";
 import Layout from "components/Layout";
-import Image from "components/Image";
 import ModelLogo from "components/ModelLogo";
 
 export const getStaticProps: GetStaticProps<{

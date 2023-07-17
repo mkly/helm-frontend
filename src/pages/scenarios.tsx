@@ -4,7 +4,6 @@ import ReactMarkdown from "react-markdown";
 
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import {
-  Table,
   TableBody,
   TableCell,
   TableHead,
@@ -38,47 +37,59 @@ export default function Scenarios({
     <Layout>
       <Head title="Scenarios" />
       <Title>Scenarios</Title>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Scenario</TableHeaderCell>
-            <TableHeaderCell>Task</TableHeaderCell>
-            <TableHeaderCell>What</TableHeaderCell>
-            <TableHeaderCell>Who</TableHeaderCell>
-            <TableHeaderCell>When</TableHeaderCell>
-            <TableHeaderCell>Language</TableHeaderCell>
-            <TableHeaderCell>Description</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {runGroups.map((run_group, idx) => {
-            if (run_group.category) {
-              return null;
-            }
-            return (
-              <TableRow key={idx}>
-                <TableCell>
-                  <p>
-                    <Link href={`/groups/${run_group.name}`}>
-                      {run_group.display_name}
-                    </Link>
-                  </p>
-                  <p>{run_group.name}</p>
-                </TableCell>
-                {run_group.taxonomy !== undefined
-                  ? (
+      <div className="w-full">
+        <table className="tremor-Table-table table-auto w-full tabular-nums text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell className="static">Scenario</TableHeaderCell>
+              <TableHeaderCell className="static">Task</TableHeaderCell>
+              <TableHeaderCell className="static">What</TableHeaderCell>
+              <TableHeaderCell className="static">Who</TableHeaderCell>
+              <TableHeaderCell className="static">When</TableHeaderCell>
+              <TableHeaderCell className="static">Language</TableHeaderCell>
+              <TableHeaderCell className="static">Description</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {runGroups.map((run_group, idx) => {
+              if (run_group.category) {
+                return null;
+              }
+              return (
+                <TableRow key={idx}>
+                  <TableCell>
+                    <p>
+                      <Link
+                        className="text-lg"
+                        href={`/groups/${run_group.name}`}
+                      >
+                        {run_group.display_name}
+                      </Link>
+                    </p>
+                    <p>{run_group.name}</p>
+                  </TableCell>
+                  {run_group.taxonomy !== undefined ? (
                     <>
-                      <TableCell>{run_group.taxonomy.task}</TableCell>
-                      <TableCell>{run_group.taxonomy.what}</TableCell>
-                      <TableCell>{run_group.taxonomy.who}</TableCell>
-                      <TableCell>{run_group.taxonomy.when}</TableCell>
-                      <TableCell>{run_group.taxonomy.language}</TableCell>
-                      <TableCell>
+                      <TableCell className="whitespace-normal">
+                        {run_group.taxonomy.task}
+                      </TableCell>
+                      <TableCell className="whitespace-normal">
+                        {run_group.taxonomy.what}
+                      </TableCell>
+                      <TableCell className="whitespace-normal">
+                        {run_group.taxonomy.who}
+                      </TableCell>
+                      <TableCell className="whitespace-normal">
+                        {run_group.taxonomy.when}
+                      </TableCell>
+                      <TableCell className="whitespace-normal">
+                        {run_group.taxonomy.language}
+                      </TableCell>
+                      <TableCell className="whitespace-normal">
                         <ReactMarkdown>{run_group.description}</ReactMarkdown>
                       </TableCell>
                     </>
-                  )
-                  : (
+                  ) : (
                     <>
                       <TableCell></TableCell>
                       <TableCell></TableCell>
@@ -90,11 +101,12 @@ export default function Scenarios({
                       </TableCell>
                     </>
                   )}
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </table>
+      </div>
     </Layout>
   );
 }
