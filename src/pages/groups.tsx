@@ -6,7 +6,6 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-  Title,
   TabGroup,
   TabList,
   Tab,
@@ -24,6 +23,7 @@ import getSummary from "loaders/summary";
 import type { IGroupTable } from "loaders/groupsTable";
 import type { ISummary } from "loaders/summary";
 import Cell from "components/Cell";
+import PageTitle from "components/PageTitle";
 
 export const getStaticProps: GetStaticProps<{
   groupsTable: IGroupTable[];
@@ -43,9 +43,9 @@ export default function Results({
     <Layout summary={summary}>
       <Head title="Results" />
       <Flex>
-        <Title>Groups</Title>
+        <PageTitle>Groups</PageTitle>
         <a
-          className="flex space-between block items-center"
+          className="flex space-between items-center self-end"
           href={getGroupsTableJsonUrl()}
           download="true"
           target="_blank"

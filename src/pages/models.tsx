@@ -3,7 +3,6 @@ import ReactMarkdown from "react-markdown";
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
 
 import {
-  Title,
   TableHead,
   TableHeaderCell,
   TableBody,
@@ -19,6 +18,7 @@ import getSummary from "loaders/summary";
 import type { ISummary } from "loaders/summary";
 import Layout from "components/Layout";
 import ModelLogo from "components/ModelLogo";
+import PageTitle from "components/PageTitle";
 
 export const getStaticProps: GetStaticProps<{
   schema: ISchema;
@@ -37,7 +37,7 @@ export default function Models({
   return (
     <Layout summary={summary}>
       <Head title="Models" />
-      <Title>Models</Title>
+      <PageTitle>Models</PageTitle>
       <div className="w-full">
         <table className="tremor-Table-table table-auto w-full tabular-nums text-tremor-default text-tremor-content dark:text-dark-tremor-content">
           <TableHead>

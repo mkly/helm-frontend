@@ -14,20 +14,9 @@ export default function Nav() {
                   flex justify-between items-center
                   "
       >
-        <div className="flex items-center">
+        <div className="flex items-center pl-2">
           <div className="flex flex-row items-center">
-            <Link
-              className="
-                      text-xl
-                      font-bold
-                      text-gray-800
-                      dark:text-white
-                      text-2xl
-                      hover:text-gray-700
-                      dark:hover:text-gray-300
-                      "
-              href="https://crfm.stanford.edu/"
-            >
+            <Link href="https://crfm.stanford.edu/">
               <Image
                 src="/crfm-logo.png"
                 alt="CRFM Logo"
@@ -35,19 +24,7 @@ export default function Nav() {
                 height="63"
               />
             </Link>
-            <Link
-              className="
-                      text-xl
-                      font-bold
-                      text-gray-800
-                      dark:text-white
-                      text-2xl
-                      hover:text-gray-700
-                      dark:hover:text-gray-300
-                      ml-6
-                      "
-              href="/"
-            >
+            <Link href="/">
               <Image
                 src="/helm-logo-simple.png"
                 alt="HELM Logo"
@@ -58,7 +35,7 @@ export default function Nav() {
           </div>
         </div>
 
-        <div className="items-center flex">
+        <div className="items-center flex pr-2">
           <div className="flex flex-row ml-6 justify-end">
             <Link
               className="

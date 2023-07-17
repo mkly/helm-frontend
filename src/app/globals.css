@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 main {
-  padding-top: 32px;
   a,
   a:link,
   a:visited,

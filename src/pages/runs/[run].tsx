@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { Title, Subtitle, Table, TableBody } from "@tremor/react";
-import { Grid, Col, Card, List } from "@tremor/react";
+import { Grid, Col, Card, List, ListItem } from "@tremor/react";
 import {
   TabGroup,
   TabList,
@@ -37,6 +37,7 @@ import Head from "components/Head";
 import DictRows from "components/DictRows";
 import Stat from "components/Stat";
 import InstanceRow from "components/InstanceRow";
+import PageTitle from "components/PageTitle";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const runSpecs = await getRunSpecs();
@@ -138,14 +139,26 @@ export default function Run({
   return (
     <Layout summary={summary}>
       <Head title={`Run: ${state.runName}`} />
+      <PageTitle>{state.runName}</PageTitle>
       <Grid className="mb-16" numItems={2}>
-        <Col numColSpan={1}>
+        <Col numColSpan={1} className="p-4">
           <Title>{state.group?.display_name || ""}</Title>
           <Subtitle>
             <ReactMarkdown>{state.group?.description || ""}</ReactMarkdown>
           </Subtitle>
+          <List className="mt-8">
+            <ListItem>
+              <b>Model:</b> {state.runSpec.adapter_spec.model || ""}
+            </ListItem>
+            <ListItem>
+              <b>Task:</b> {state.runSpec.scenario_spec.args.task || ""}
+            </ListItem>
+            <ListItem>
+              <b>Run:</b> {state.runName}
+            </ListItem>
+          </List>
         </Col>
-        <Col numColSpan={1}>
+        <Col numColSpan={1} className="p-4">
           <Card>
             <List>
               <Title>Adapter specifications</Title>

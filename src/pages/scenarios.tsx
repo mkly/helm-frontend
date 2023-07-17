@@ -9,12 +9,12 @@ import {
   TableHead,
   TableHeaderCell,
   TableRow,
-  Title,
 } from "@tremor/react";
 
 import type { IRunGroup } from "loaders/schema";
 import type { ISummary } from "loaders/summary";
 
+import PageTitle from "components/PageTitle";
 import Layout from "components/Layout";
 import Head from "components/Head";
 import getSchema from "loaders/schema";
@@ -42,7 +42,7 @@ export default function Scenarios({
   return (
     <Layout summary={summary}>
       <Head title="Scenarios" />
-      <Title>Scenarios</Title>
+      <PageTitle>Scenarios</PageTitle>
       <div className="w-full">
         <table className="tremor-Table-table table-auto w-full tabular-nums text-tremor-default text-tremor-content dark:text-dark-tremor-content">
           <TableHead>

@@ -8,13 +8,13 @@ export default function Footer({ summary }: { summary: ISummary }) {
   if (!summary.suite || !summary.date) {
     return (
       <div className="container mx-auto">
-        <footer className="flex justify-end my-12"></footer>
+        <footer className="flex justify-end py-12"></footer>
       </div>
     );
   }
   return (
     <div className="container mx-auto">
-      <footer className="flex justify-end my-12">
+      <footer className="flex justify-end py-12">
         <Text>
           {summary.suite} (last updated {summary.date})
         </Text>

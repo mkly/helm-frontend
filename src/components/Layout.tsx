@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <>
       <Nav />
-      <main>
+      <main className="pt-2">
         <div className="container mx-auto">{children}</div>
       </main>
       <Footer summary={summary} />

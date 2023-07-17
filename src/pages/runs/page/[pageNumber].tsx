@@ -7,7 +7,6 @@ import type {
 } from "next";
 
 import {
-  Title,
   Table,
   TableHead,
   TableHeaderCell,
@@ -24,6 +23,7 @@ import getSummary from "loaders/summary";
 import Layout from "components/Layout";
 import Head from "components/Head";
 import Pagination from "components/Pagination";
+import PageTitle from "components/PageTitle";
 
 const RESULTS_PER_PAGE = 200;
 
@@ -90,7 +90,7 @@ export default function RawRuns({
   return (
     <Layout summary={summary}>
       <Head title="Runs" />
-      <Title>Runs</Title>
+      <PageTitle>Raw Runs</PageTitle>
 
       <Table>
         <TableHead>
