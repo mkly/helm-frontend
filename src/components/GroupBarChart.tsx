@@ -81,7 +81,6 @@ export default function GroupBarChart({ groupTable }: Props) {
     (groupTable.rows.length || 1) *
     20;
 
-  console.log(height);
   return (
     <div style={{ height }} className={`w-full`}>
       <Legend
