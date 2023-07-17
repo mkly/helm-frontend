@@ -53,7 +53,13 @@ export default function MetricList({ metrics, metricGroups }: Props) {
         <ul>
           <Title>No Metric Group</Title>
           {remainingMetrics.map((metric, idx) => (
-            <li key={idx} className="ml-4">
+            <li key={idx}>
+              <Icon
+                color="zinc"
+                size="sm"
+                icon={InformationCircleIcon}
+                tooltip={metric.description}
+              />{" "}
               {metric.display_name}
             </li>
           ))}
